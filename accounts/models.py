@@ -6,12 +6,12 @@ import random
 
 
 class User(AbstractUser):
-    GENDER_CHOICES = [("M", "Male"), ("F", "Female"), ("O", "Other")]
+    GENDER_CHOICES = [("MAL", "Male"), ("FEM", "Female"), ("OTH", "Other")]
     registration_id = models.CharField(max_length=10, unique=True, editable=False)
     phone_number = models.CharField(max_length=15, null=True)
     address = models.TextField(null=True)
     date_of_birth = models.DateField(null=True)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
+    gender = models.CharField(max_length=3, choices=GENDER_CHOICES, null=True)
     profile_picture = models.ImageField(
         upload_to="profile_picture/", null=True, blank=True
     )
@@ -25,7 +25,6 @@ class User(AbstractUser):
             self.password = make_password(self.password)
         super().save(*args, **kwargs)
 
-    # TODO change randint
 
     def generate_registration_id(self, prefix):
         year = datetime.now().year

@@ -23,7 +23,10 @@ from .forms import AdminForm, StaffForm, LibrarianForm, StudentForm
 def user_redirect(request):
     """Redirects users to their respective dashboards based on user class."""
 
-    if hasattr(request.user, "admin"):
+
+    if request.user.is_superuser:
+        return redirect("admin")
+    elif hasattr(request.user, "admin"):
         return redirect("admin_dashboard")
     elif hasattr(request.user, "staff"):
         return redirect("staff_dashboard")

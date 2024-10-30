@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.models import Permission
-from .models import Admin, Staff, Librarian, Student
+from .models import Admin, Staff, Librarian, Student, User
 
 admin.site.register(Admin)
 admin.site.register(Staff)
 admin.site.register(Librarian)
 admin.site.register(Student)
 admin.site.register(Permission)
+admin.site.register(User)
